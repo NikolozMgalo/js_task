@@ -1,4 +1,4 @@
-let num =  [2,2,2,10,5,6,8];
+let num = [2, 2, 2, 10, 5, 6, 8];
 let val = 2;
 
 const removeElement = (num, val) => {
@@ -6,13 +6,13 @@ const removeElement = (num, val) => {
 
   for (let elem of num) {
     if (elem !== val) {
-        num[k] = elem
-        k++;
-    } 
+      num[k] = elem;
+      k++;
+    }
   }
   return k;
-}
+};
 
 const k = removeElement(num, val);
 num = num.slice(0, k);
-console.log(k, num)
+console.log(k, num);
