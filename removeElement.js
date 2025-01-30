@@ -1,5 +1,5 @@
 let num =  [2,2,2,10,5,6,8];
-let val = -2;
+let val = 2;
 
 const removeElement = (num, val) => {
   let k = 0;
