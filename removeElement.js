@@ -4,7 +4,6 @@ let val = 2;
 const removeElement = (num, val) => {
   let k = 0;
 
-  if((num.length >= 0 && num.length <= 100) && (val >= 0 && val <= 100 )){
   for (let elem of num) {
     if (elem !== val) {
         num[k] = elem
@@ -12,10 +11,7 @@ const removeElement = (num, val) => {
     } 
   }
   return k;
-} else {
-  return 'incorrect data provided';
 }
-};
 
 const k = removeElement(num, val);
 num = num.slice(0, k);
