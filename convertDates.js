@@ -1,37 +1,56 @@
-// Given a list of events for specific dates, stored in the following structure:
-
-let events = [
-  { date: "2019-12-29", event: "name1" },
-  { date: "2019-12-31", event: "name2" },
-  { date: "2019-12-29", event: "name3" },
-  { date: "2019-12-30", event: "name4" },
-  { date: "2019-12-29", event: "name5" },
-  { date: "2019-12-31", event: "name6" },
-  { date: "2019-12-29", event: "name7" },
-  { date: "2019-12-30", event: "name8" },
-  { date: "2019-12-30", event: "name9" },
+// Given a list of some data for certain dates, stored in the following structure:
+let data = [
+    { year: 2019, month: 11, day: 20, data: ['array with data'] },
+    { year: 2019, month: 11, day: 21, data: ['array with data'] },
+    { year: 2019, month: 12, day: 25, data: ['array with data'] },
+    { year: 2019, month: 12, day: 26, data: ['array with data'] },
+    { year: 2020, month: 10, day: 29, data: ['array with data'] },
+    { year: 2020, month: 10, day: 30, data: ['array with data'] },
+    { year: 2020, month: 11, day: 19, data: ['array with data'] },
+    { year: 2020, month: 11, day: 20, data: ['array with data'] }
 ];
-// Write code that will transform the data structure into this:
-let expectedResult = {
-    "2019-12-29": ["name1", "name3", "name5", "name7"],
-    "2019-12-30": ["name4", "name8", "name9"],
-    "2019-12-31": ["name2", "name6"],
-};
 
-let result = events.reduce((acc, { date, event }) => {
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(event);
-    return acc;
-  }, {});
-  
+// Write the code that converts the data structure into a structure like this: 
+const expectedResult = {
+	year1: {
+		month1: {
+			day1: ['dataset'],
+			day2: ['dataset'],
+			day3: ['dataset'],
+		},
+		month2: {
+			day1: ['dataset'],
+			day2: ['dataset'],
+			day3: ['dataset'],
+		}
+	},
+	year2: {
+		month1: {
+			day1: ['dataArray'],
+			day2: ['dataset'],
+			day3: ['dataset'],
+		},
+		month2: {
+			day1: ['dataArray'],
+			day2: ['dataset'],
+			day3: ['dataset'],
+		}
+	}
+}
+const transformData = (data) => {
+    return data.reduce((result, { year, month, day, data }) => {
+        if (!result[year]) {
+            result[year] = {};
+        }
 
-  let sortedResult = Object.keys(result)
-    .sort()
-    .reduce((sortedObj, key) => {
-      sortedObj[key] = result[key];
-      return sortedObj;
+        if (!result[year][month]) {
+            result[year][month] = {};
+        }
+
+        result[year][month][day] = data;
+
+        return result;
     }, {});
+}
 
-console.log(sortedResult);
+console.log(transformData(data));
